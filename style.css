@@ -42,3 +42,7 @@ body{
 .task-done{
     text-decoration: line-through;
 }
+
+.text-tabs div{
+    cursor:pointer;
+}

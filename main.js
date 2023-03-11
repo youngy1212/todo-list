@@ -2,10 +2,16 @@ let taskInput = document.getElementById("task-input");
 let addButton = document.getElementById("add-button");
 let taskList = [];
 let tabs = document.querySelectorAll(".text-tabs div");
-let mode = 'all';
+let mode = 'tab-all';
 let filterList = [];
+let underLine = document.getElementById("under-Line");
 
 
+taskInput.addEventListener("keyup", function(event){
+    if(event.key === 'Enter'){
+        addTask();
+    }
+})
 addButton.addEventListener("click", addTask);
 
 for (let i = 1; i < tabs.length; i++) {
@@ -31,7 +37,7 @@ function render() {
     let resultHTML = "";
     let list = [];
 
-    if(mode === "all"){
+    if(mode === "tab-all"){
         list = taskList;
     }else{
         list = filterList;
@@ -92,7 +98,11 @@ function DeleteTask(id) {
 function filter(event){
    if(event){
     mode = event.target.id //if문 안으로. event없이 호출하는 경우도 있음 
-   } 
+    underLine.style.width = event.target.offsetWidth +"px";
+    underLine.style.left = event.target.offsetLeft+"px";
+    underLine.style.top = event.target.offsetTop + (event.target.offsetHeight - 4)+"px";
+
+} 
 
    filterList = []; 
 
